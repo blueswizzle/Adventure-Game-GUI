@@ -1,20 +1,22 @@
 package game;
 
-import javax.swing.*;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 
 
 public class Story  {
     Game game;
     UI ui;
     WindowManager wm;
+    AudioManager am = new AudioManager();
 
-
-    public Story(Game game,UI ui,WindowManager wm){
+    public Story(Game game,UI ui,WindowManager wm) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         this.game = game;
         this.ui = ui;
         this.wm = wm;
     }
-    public void selectGamePosition(String gamePosition){
+    public void selectGamePosition(String gamePosition) throws InterruptedException {
         switch(gamePosition){
             case "toIntro01" : introScene01(); break;
             case "toIntro02" : introScene02(); break;
@@ -24,6 +26,8 @@ public class Story  {
             case "toCaldor00" : caldor00(); break;
             case "toRiver00" : river00(); break;
             case "toRiver01" : river01(); break;
+            case "toRiver02" : river02(); break;
+            case "toRiver03" : river03(); break;
             case "toHollowAttack00" : hollowAttack00(); break;
             case "backToIntro00" : introScene00(); break;
             case "backToIntro01" : introScene01(); break;
@@ -31,6 +35,8 @@ public class Story  {
             case "backToIntro03" : introScene03(); break;
             case "backToCaldor00" : caldor00(); break;
             case "backToRiver00" : river00(); break;
+            case "backToRiver01" : river01(); break;
+            case "backToRiver02" : river02(); break;
         }
     }
 
@@ -151,21 +157,43 @@ public class Story  {
         game.gamePosition4 = "";
     }
         public void river01(){
-            ui.mainTextArea.setText("You're awoken at the sounds of twigs snapping and lots of movement in the brushes. It's dark so you can't see whatever is making all those sounds. You pass it off as just some foxes strutting" +
-                " about, but then.......");
+            ui.mainTextArea.setText("You're awoken at the sounds of twigs snapping and lots of movement in the brushes. It's dark so you can't see whatever is making all those sounds. You pass it off as just some foxes or some other small animals that are strutting" +
+                " about but the sound of rustling becomes louder and more frequent. Your instincts tell you this isn't just some ordinary fox or rabbit having a late-night stroll in the woods. You get up and ready your sword, your eyes " +
+                    "darting around trying to pick out whatever is out there.");
 
             ui.choice1.setText(" > ");
             ui.choice2.setText(" < ");
             ui.choice3.setText("");
             ui.choice4.setText("");
 
-            game.gamePosition1 = "toHollowAttack00";
+            game.gamePosition1 = "toRiver02";
             game.gamePosition2 = "backToRiver00";
             game.gamePosition3 = "";
             game.gamePosition4 = "";
         }
-        public void hollowAttack00(){
+        public void river02(){
+            ui.mainTextArea.setText("The rustling gets closer until it sounds like whatever is out there is only another 12 feet in front of you. Eventually the rustling stops. You finally catch a glimpse of the creature's eyes. They " +
+                    "shine bright red through the bushes, and they're at least 7ft high up from the ground. The creature's head slowly emerges from the bushes.");
 
+            ui.choice1.setText(" > ");
+            ui.choice2.setText(" < ");
+            ui.choice3.setText("");
+            ui.choice4.setText("");
+
+            game.gamePosition1 = "toRiver03";
+            game.gamePosition2 = "backToRiver01";
+            game.gamePosition3 = "";
+            game.gamePosition4 = "";
+        }
+        public void river03(){
+
+        }
+
+        public void hollowAttack00() throws InterruptedException {
+            am.playHollowRoar();
+            ui.mainTextArea.setText("!!!!");
+            Thread.sleep(8000);
+            ui.mainTextArea.setText("A terrible roar echoes through the woods. The hair on the back of your neck stands up and you begin to shiver.");
         }
 
 

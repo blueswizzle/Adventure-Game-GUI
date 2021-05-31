@@ -80,7 +80,7 @@ public class UI {
         choice4.setBackground(Color.black);
         choice4.setForeground(Color.white);
         choicePanel.add(choice4);
-        choicePanel.setBackground(Color.red);
+        choicePanel.setBackground(Color.black);
 
         startButton.addActionListener(bHandler);
         startButton.setActionCommand("start");
