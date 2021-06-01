@@ -187,8 +187,10 @@ public class Story  {
 
 
         public void wendigoAttack00() throws InterruptedException {
-            am.playWendigoRoar();
             ui.mainTextArea.setText("!!!!");
+            am.playWendigoRoar();
+
+
             Thread.sleep(8000);
             ui.mainTextArea.setText("A terrible roar echoes through the woods. The hair on the back of your neck stands up. The wendigo completely emerges from the bushes, standing 7ft tall with leathery pale " +
                     "skin. It's head had antlers that were bloody, and its mouth had razor sharp teeth. In a few moments it will leap forward and attack." +
