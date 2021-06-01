@@ -16,7 +16,7 @@ public class Story  {
         this.ui = ui;
         this.wm = wm;
     }
-    public void selectGamePosition(String gamePosition) throws InterruptedException {
+    public void selectGamePosition(String gamePosition) {
         switch(gamePosition){
             case "toIntro01" : introScene01(); break;
             case "toIntro02" : introScene02(); break;
@@ -186,12 +186,9 @@ public class Story  {
         }
 
 
-        public void wendigoAttack00() throws InterruptedException {
+        public void wendigoAttack00()  {
             ui.mainTextArea.setText("!!!!");
             am.playWendigoRoar();
-
-
-            Thread.sleep(8000);
             ui.mainTextArea.setText("A terrible roar echoes through the woods. The hair on the back of your neck stands up. The wendigo completely emerges from the bushes, standing 7ft tall with leathery pale " +
                     "skin. It's head had antlers that were bloody, and its mouth had razor sharp teeth. In a few moments it will leap forward and attack." +
                     "\n\nWhat do you do?");
