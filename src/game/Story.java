@@ -27,8 +27,7 @@ public class Story  {
             case "toRiver00" : river00(); break;
             case "toRiver01" : river01(); break;
             case "toRiver02" : river02(); break;
-            case "toRiver03" : river03(); break;
-            case "toHollowAttack00" : hollowAttack00(); break;
+            case "toWendigoAttack00" : wendigoAttack00(); break;
             case "backToIntro00" : introScene00(); break;
             case "backToIntro01" : introScene01(); break;
             case "backToIntro02" : introScene02(); break;
@@ -180,20 +179,29 @@ public class Story  {
             ui.choice3.setText("");
             ui.choice4.setText("");
 
-            game.gamePosition1 = "toRiver03";
+            game.gamePosition1 = "toWendigoAttack00";
             game.gamePosition2 = "backToRiver01";
             game.gamePosition3 = "";
             game.gamePosition4 = "";
         }
-        public void river03(){
 
-        }
 
-        public void hollowAttack00() throws InterruptedException {
-            am.playHollowRoar();
+        public void wendigoAttack00() throws InterruptedException {
+            am.playWendigoRoar();
             ui.mainTextArea.setText("!!!!");
             Thread.sleep(8000);
-            ui.mainTextArea.setText("A terrible roar echoes through the woods. The hair on the back of your neck stands up and you begin to shiver.");
+            ui.mainTextArea.setText("A terrible roar echoes through the woods. The hair on the back of your neck stands up. The wendigo completely emerges from the bushes, standing 7ft tall with leathery pale " +
+                    "skin. It's head had antlers that were bloody, and its mouth had razor sharp teeth. In a few moments it will leap forward and attack." +
+                    "\n\nWhat do you do?");
+            ui.choice1.setText("Fight");
+            ui.choice2.setText("Run Away!");
+            ui.choice3.setText("");
+            ui.choice4.setText("");
+
+            game.gamePosition1 = "fightWendigo";
+            game.gamePosition2 = "runWendigo";
+            game.gamePosition3 = "";
+            game.gamePosition4 = "";
         }
 
 
