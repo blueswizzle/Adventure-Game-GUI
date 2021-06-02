@@ -21,7 +21,7 @@ public class Game {
 
     public Game() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         ui.createUI(bHandler);
-        ui.createBattleUI();
+        ui.createBattleUI(aHandler);
         wm.showTitleScreen();
     }
     public class ButtonHandler implements ActionListener{
@@ -55,6 +55,8 @@ public class Game {
                 case "lightAttack" : break;
                 case "heavyAttack" : break;
                 case "spell" : break;
+                case "castFireball" : break;
+                case "castHeal" : break;
             }
         }
     }

@@ -45,6 +45,10 @@ public class Player {
     public void setMana(int mana) {
         this.mana = mana;
     }
+    public boolean isDead(){
+        if(this.health <= 0) return true;
+        return false;
+    }
 
 
 

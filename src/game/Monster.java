@@ -38,4 +38,8 @@ public class Monster extends Player{
         super.setMana(mana);
     }
 
+    @Override
+    public boolean isDead() {
+        return super.isDead();
+    }
 }

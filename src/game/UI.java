@@ -104,7 +104,7 @@ public class UI {
 
     }
 
-    public void createBattleUI(){
+    public void createBattleUI(Game.ActionHandler aHandler){
 
 
         playerStatsPanel = new JPanel();
@@ -134,6 +134,7 @@ public class UI {
         actionButton1.setBackground(Color.black);
         actionButton1.setForeground(Color.white);
         actionButton1.setFocusPainted(false);
+        actionButton1.addActionListener(aHandler);
         actionButton1.setActionCommand("lightAttack");
         actionButtonPanel.add(actionButton1);
         actionButton2 = new JButton("Heavy Attack");
@@ -141,13 +142,15 @@ public class UI {
         actionButton2.setBackground(Color.black);
         actionButton2.setForeground(Color.white);
         actionButton2.setFocusPainted(false);
+        actionButton2.addActionListener(aHandler);
         actionButton2.setActionCommand("heavyAttack");
         actionButtonPanel.add(actionButton2);
         actionButton3 = new JButton("Cast Spell");
         actionButton3.setFont(normalFont);
         actionButton3.setBackground(Color.black);
         actionButton3.setForeground(Color.white);
-        actionButton3.setActionCommand("castSpell");
+        actionButton3.addActionListener(aHandler);
+        actionButton3.setActionCommand("spell");
         actionButton3.setFocusPainted(false);
         actionButtonPanel.add(actionButton3);
 
@@ -157,11 +160,15 @@ public class UI {
         fireBallButton.setFont(normalFont);
         fireBallButton.setBackground(Color.black);
         fireBallButton.setForeground(Color.white);
+        fireBallButton.addActionListener(aHandler);
+        fireBallButton.setActionCommand("castFireball");
         fireBallButton.setFocusPainted(false);
         healButton = new JButton("Heal");
         healButton.setFont(normalFont);
         healButton.setBackground(Color.black);
         healButton.setForeground(Color.white);
+        healButton.addActionListener(aHandler);
+        healButton.setActionCommand("castHeal");
         healButton.setFocusPainted(false);
         spellPanel.add(fireBallButton);
         spellPanel.add(healButton);
