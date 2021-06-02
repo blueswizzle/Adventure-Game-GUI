@@ -17,8 +17,8 @@ public class Game {
     UI ui = new UI();
     WindowManager wm = new WindowManager(ui);
     String gamePosition1 ,gamePosition2, gamePosition3, gamePosition4;
+    String battleAction1, battleAction2, battleAction3;
     Story story = new Story(this,ui,wm);
-
     public Game() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         ui.createUI(bHandler);
         ui.createBattleUI(aHandler);
@@ -52,8 +52,8 @@ public class Game {
         public void actionPerformed(ActionEvent e) {
             String userInput = e.getActionCommand();
             switch (userInput){
-                case "lightAttack" : break;
-                case "heavyAttack" : break;
+                case "lightAttack" : story.selectBattleAction(battleAction1); break;
+                case "heavyAttack" : story.selectBattleAction(battleAction2); break;
                 case "spell" : break;
                 case "castFireball" : break;
                 case "castHeal" : break;

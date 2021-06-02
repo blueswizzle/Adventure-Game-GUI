@@ -1,11 +1,16 @@
 package game;
 
 public class Monster extends Player{
+    public String name;
 
 
-
-    public Monster() {
+    public Monster(String name) {
         super();
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     @Override

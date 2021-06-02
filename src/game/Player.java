@@ -6,10 +6,10 @@ public class Player {
     private int health;
     private int stamina;
     private int mana;
-    private int baseLightAttackDamage;
-    private int baseHeavyAttackDamage;
-    private int lightAttackCost;
-    private int heavyAttackCost;
+    public int baseLightAttackDamage;
+    public int baseHeavyAttackDamage;
+    public int lightAttackCost;
+    public int heavyAttackCost;
 
 
     public Player() {

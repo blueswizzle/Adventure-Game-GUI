@@ -10,14 +10,20 @@ public class Story  {
     UI ui;
     WindowManager wm;
     AudioManager am = new AudioManager();
+    Player player = new Player();
+    Monster wendigo;
+    BattleLogic battle = new BattleLogic(player,wendigo,ui,game);
 
     public Story(Game game,UI ui,WindowManager wm) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         this.game = game;
         this.ui = ui;
         this.wm = wm;
+
     }
     public void selectGamePosition(String gamePosition) {
         switch(gamePosition){
+            case "lightAttack" : battle.playerLightAttack(); break;
+            case "heavyAttack" : battle.playerHeavyAttack(); break;
             case "toIntro01" : introScene01(); break;
             case "toIntro02" : introScene02(); break;
             case "toIntro03" : introScene03(); break;
@@ -28,6 +34,7 @@ public class Story  {
             case "toRiver01" : river01(); break;
             case "toRiver02" : river02(); break;
             case "toWendigoAttack00" : wendigoAttack00(); break;
+            case "fightWendigo" : fightWendigo();
             case "backToIntro00" : introScene00(); break;
             case "backToIntro01" : introScene01(); break;
             case "backToIntro02" : introScene02(); break;
@@ -38,6 +45,14 @@ public class Story  {
             case "backToRiver02" : river02(); break;
         }
     }
+
+    public void selectBattleAction(String battleAction){
+        switch(battleAction){
+            case "lightAttack" : battle.playerLightAttack(); break;
+            case "heavyAttack" : battle.playerHeavyAttack(); break;
+        }
+    }
+
 
     public void introScene00(){
         ui.mainTextArea.setText("You open your eyes and gaze upon the starry blue sky. It's a little past sunrise. " +
@@ -202,7 +217,27 @@ public class Story  {
             game.gamePosition3 = "";
             game.gamePosition4 = "";
         }
+        public void fightWendigo(){
+            wendigo = new Monster("Wendigo");
+            wm.showBattleUImini();
+            setLabels();
+            ui.choice1.setText("Light Attack");
+            ui.choice2.setText("Heavy Attack");
+            game.gamePosition1 = "lightAttack";
+            game.gamePosition2 = "heavyAttack";
+            if(player.isDead() || wendigo.isDead()){
+                ui.battleTextArea.setText("You have won!");
+            }
 
+        }
+    public void setLabels(){
+        ui.playerHPLabel.setText("Your HP: " + player.getHealth());
+        ui.playerStaminaLabel.setText("Your Stamina: " + player.getStamina());
+        ui.playerManaLabel.setText("Your Mana: " + player.getMana());
+        ui.enemyHPLabel.setText(wendigo.getName() + "'s HP: " + wendigo.getHealth());
+        ui.enemyStaminaLabel.setText(wendigo.getName() + "'s Stamina: " + wendigo.getStamina());
+        ui.enemyManaLabel.setText(wendigo.getName() + "'s Mana: " + wendigo.getMana());
+    }
 
     }
 

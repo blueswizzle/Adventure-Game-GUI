@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class UI {
-    JFrame frame;
+    JFrame frame, battleFrame;
     JPanel titlePanel, startButtonPanel, mainTextPanel, choicePanel, playerStatsPanel, actionButtonPanel, enemyStatsPanel, battleTextPanel, spellPanel;
     JTextArea mainTextArea, battleTextArea;
     JLabel titleLabel, playerHPLabel, playerStaminaLabel, playerManaLabel, enemyHPLabel, enemyStaminaLabel, enemyManaLabel;
@@ -105,7 +105,11 @@ public class UI {
     }
 
     public void createBattleUI(Game.ActionHandler aHandler){
-
+        battleFrame = new JFrame();
+        battleFrame.setSize(1000,800);
+        battleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        battleFrame.getContentPane().setBackground(Color.black);
+        battleFrame.setLayout(null);
 
         playerStatsPanel = new JPanel();
         actionButtonPanel = new JPanel();
@@ -113,15 +117,15 @@ public class UI {
         battleTextPanel = new JPanel();
         spellPanel = new JPanel();
 
-        int num = 100;
+
         playerStatsPanel.setBounds(0,550,300,250);
-        playerHPLabel = new JLabel("Your HP: " + num);
+        playerHPLabel = new JLabel();
         playerHPLabel.setFont(normalFont);
         playerHPLabel.setForeground(Color.green);
-        playerStaminaLabel = new JLabel("Your Stamina: " + num);
+        playerStaminaLabel = new JLabel();
         playerStaminaLabel.setFont(normalFont);
         playerStaminaLabel.setForeground(Color.green);
-        playerManaLabel = new JLabel("Your Mana: " + num);
+        playerManaLabel = new JLabel();
         playerManaLabel.setFont(normalFont);
         playerManaLabel.setForeground(Color.green);
         playerStatsPanel.add(playerHPLabel);
@@ -175,13 +179,13 @@ public class UI {
         spellPanel.setVisible(false);
 
         enemyStatsPanel.setBounds(660,25,300,250);
-        enemyHPLabel = new JLabel("Wendigo's HP:" + num);
+        enemyHPLabel = new JLabel();
         enemyHPLabel.setFont(normalFont);
         enemyHPLabel.setForeground(Color.red);
-        enemyStaminaLabel = new JLabel("Wendigo's Stamina: " + num);
+        enemyStaminaLabel = new JLabel();
         enemyStaminaLabel.setFont(normalFont);
         enemyStaminaLabel.setForeground(Color.red);
-        enemyManaLabel = new JLabel("Wendigo's Mana: " + num);
+        enemyManaLabel = new JLabel();
         enemyManaLabel.setFont(normalFont);
         enemyManaLabel.setForeground(Color.red);
         enemyStatsPanel.add(enemyHPLabel);
@@ -213,6 +217,7 @@ public class UI {
         frame.add(enemyStatsPanel);
         frame.add(battleTextPanel);
         frame.add(spellPanel);
+
 
     }
 
