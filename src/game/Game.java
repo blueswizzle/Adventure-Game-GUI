@@ -10,6 +10,10 @@ import java.io.IOException;
 
 public class Game {
     ButtonHandler bHandler = new ButtonHandler();
+    ActionHandler aHandler = new ActionHandler();
+
+
+
     UI ui = new UI();
     WindowManager wm = new WindowManager(ui);
     String gamePosition1 ,gamePosition2, gamePosition3, gamePosition4;
@@ -18,7 +22,7 @@ public class Game {
     public Game() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         ui.createUI(bHandler);
         ui.createBattleUI();
-        wm.showTitleScreen();
+        //wm.showTitleScreen();
     }
     public class ButtonHandler implements ActionListener{
 
@@ -28,33 +32,29 @@ public class Game {
             switch (userInput){
                 case "start" : wm.titleToStart(); story.introScene00(); break;
                 case "choice1" :
-                    try {
-                        story.selectGamePosition(gamePosition1);
-                    } catch (InterruptedException interruptedException) {
-                        interruptedException.printStackTrace();
-                    }
+                    story.selectGamePosition(gamePosition1);
                     break;
                 case "choice2" :
-                    try {
-                        story.selectGamePosition(gamePosition2);
-                    } catch (InterruptedException interruptedException) {
-                        interruptedException.printStackTrace();
-                    }
+                    story.selectGamePosition(gamePosition2);
                     break;
                 case "choice3" :
-                    try {
-                        story.selectGamePosition(gamePosition3);
-                    } catch (InterruptedException interruptedException) {
-                        interruptedException.printStackTrace();
-                    }
+                    story.selectGamePosition(gamePosition3);
                     break;
                 case "choice4" :
-                    try {
-                        story.selectGamePosition(gamePosition4);
-                    } catch (InterruptedException interruptedException) {
-                        interruptedException.printStackTrace();
-                    }
+                    story.selectGamePosition(gamePosition4);
                     break;
+            }
+        }
+    }
+    public class ActionHandler implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String userInput = e.getActionCommand();
+            switch (userInput){
+                case "lightAttack" : break;
+                case "heavyAttack" : break;
+                case "spell" : break;
             }
         }
     }

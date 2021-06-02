@@ -19,6 +19,10 @@ public class AudioManager {
     }
 
     public void playWendigoRoar(){
+        FloatControl gainControl = (FloatControl) wendigoRoarClip.getControl(FloatControl.Type.MASTER_GAIN);
+        double gain = 0.1;
+        float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
+        gainControl.setValue(dB);
         wendigoRoarClip.start();
     }
 

@@ -5,10 +5,11 @@ import java.awt.*;
 
 public class UI {
     JFrame frame, battleFrame;
-    JPanel titlePanel, startButtonPanel, mainTextPanel, choicePanel;
-    JTextArea mainTextArea;
-    JLabel titleLabel;
+    JPanel titlePanel, startButtonPanel, mainTextPanel, choicePanel, playerStatsPanel, actionButtonPanel, enemyStatsPanel, battleTextPanel, spellPanel;
+    JTextArea mainTextArea, battleTextArea;
+    JLabel titleLabel, playerHPLabel, playerStaminaLabel, playerManaLabel, enemyHPLabel, enemyStaminaLabel, enemyManaLabel;
     JButton startButton, choice1, choice2, choice3, choice4;
+    JButton actionButton1, actionButton2, actionButton3, fireBallButton, healButton;
     Font titleFont = new Font("Felix Titling", Font.PLAIN,90);
     Font normalFont = new Font("Bell MT", Font.PLAIN,28);
 
@@ -98,7 +99,7 @@ public class UI {
         frame.add(titlePanel);
         frame.add(startButtonPanel);
         frame.setResizable(false);
-        frame.setVisible(true);
+        frame.setVisible(false);
 
 
     }
@@ -109,7 +110,107 @@ public class UI {
         battleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         battleFrame.getContentPane().setBackground(Color.black);
         battleFrame.setLayout(null);
-        battleFrame.setVisible(false);
+        battleFrame.setVisible(true);
+
+        playerStatsPanel = new JPanel();
+        actionButtonPanel = new JPanel();
+        enemyStatsPanel = new JPanel();
+        battleTextPanel = new JPanel();
+        spellPanel = new JPanel();
+
+        int num = 100;
+        playerStatsPanel.setBounds(0,550,300,250);
+        playerHPLabel = new JLabel("Your HP: " + num);
+        playerHPLabel.setFont(normalFont);
+        playerHPLabel.setForeground(Color.green);
+        playerStaminaLabel = new JLabel("Your Stamina: " + num);
+        playerStaminaLabel.setFont(normalFont);
+        playerStaminaLabel.setForeground(Color.green);
+        playerManaLabel = new JLabel("Your Mana: " + num);
+        playerManaLabel.setFont(normalFont);
+        playerManaLabel.setForeground(Color.green);
+        playerStatsPanel.add(playerHPLabel);
+        playerStatsPanel.add(playerStaminaLabel);
+        playerStatsPanel.add(playerManaLabel);
+
+        actionButtonPanel.setBounds(365,550,250,250);
+        actionButton1 = new JButton("Light Attack");
+        actionButton1.setFont(normalFont);
+        actionButton1.setBackground(Color.black);
+        actionButton1.setForeground(Color.white);
+        actionButton1.setFocusPainted(false);
+        actionButton1.setActionCommand("lightAttack");
+        actionButtonPanel.add(actionButton1);
+        actionButton2 = new JButton("Heavy Attack");
+        actionButton2.setFont(normalFont);
+        actionButton2.setBackground(Color.black);
+        actionButton2.setForeground(Color.white);
+        actionButton2.setFocusPainted(false);
+        actionButton2.setActionCommand("heavyAttack");
+        actionButtonPanel.add(actionButton2);
+        actionButton3 = new JButton("Cast Spell");
+        actionButton3.setFont(normalFont);
+        actionButton3.setBackground(Color.black);
+        actionButton3.setForeground(Color.white);
+        actionButton3.setActionCommand("castSpell");
+        actionButton3.setFocusPainted(false);
+        actionButtonPanel.add(actionButton3);
+
+        spellPanel.setBounds(500,575,460,200);
+        spellPanel.setBackground(Color.black);
+        fireBallButton = new JButton("Fireball");
+        fireBallButton.setFont(normalFont);
+        fireBallButton.setBackground(Color.black);
+        fireBallButton.setForeground(Color.white);
+        fireBallButton.setFocusPainted(false);
+        healButton = new JButton("Heal");
+        healButton.setFont(normalFont);
+        healButton.setBackground(Color.black);
+        healButton.setForeground(Color.white);
+        healButton.setFocusPainted(false);
+        spellPanel.add(fireBallButton);
+        spellPanel.add(healButton);
+        spellPanel.setVisible(false);
+
+        enemyStatsPanel.setBounds(660,25,300,250);
+        enemyHPLabel = new JLabel("Wendigo's HP:" + num);
+        enemyHPLabel.setFont(normalFont);
+        enemyHPLabel.setForeground(Color.red);
+        enemyStaminaLabel = new JLabel("Wendigo's Stamina: " + num);
+        enemyStaminaLabel.setFont(normalFont);
+        enemyStaminaLabel.setForeground(Color.red);
+        enemyManaLabel = new JLabel("Wendigo's Mana: " + num);
+        enemyManaLabel.setFont(normalFont);
+        enemyManaLabel.setForeground(Color.red);
+        enemyStatsPanel.add(enemyHPLabel);
+        enemyStatsPanel.add(enemyStaminaLabel);
+        enemyStatsPanel.add(enemyManaLabel);
+
+
+
+        battleTextPanel.setBounds(10,25,600,500);
+        battleTextPanel.setBackground(Color.black);
+        battleTextArea = new JTextArea("This is the main battle text! Let's get this on, son! We bout to killing monsters up in here!");
+        battleTextArea.setBounds(10,25,600,500);
+        battleTextArea.setBackground(Color.black);
+        battleTextArea.setForeground(Color.white);
+        battleTextArea.setFont(normalFont);
+        battleTextArea.setLineWrap(true);
+        battleTextArea.setWrapStyleWord(true);
+        battleTextArea.setEditable(false);
+        battleTextPanel.add(battleTextArea);
+
+
+
+        enemyStatsPanel.setBackground(Color.black);
+        playerStatsPanel.setBackground(Color.black);
+        actionButtonPanel.setBackground(Color.black);
+
+        battleFrame.add(playerStatsPanel);
+        battleFrame.add(actionButtonPanel);
+        battleFrame.add(enemyStatsPanel);
+        battleFrame.add(battleTextPanel);
+        battleFrame.add(spellPanel);
     }
 
 
