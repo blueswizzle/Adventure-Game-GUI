@@ -54,7 +54,7 @@ public class Game {
             switch (userInput){
                 case "lightAttack" : story.selectBattleAction(battleAction1); break;
                 case "heavyAttack" : story.selectBattleAction(battleAction2); break;
-                case "spell" : break;
+                case "spell" : ui.spellPanel.setVisible(true);break;
                 case "castFireball" : break;
                 case "castHeal" : break;
             }

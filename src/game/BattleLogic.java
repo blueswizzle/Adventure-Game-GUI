@@ -9,22 +9,11 @@ public class BattleLogic {
     Game game;
     Random random = new Random();
 
-
     public BattleLogic(Player player, Monster monster, UI ui, Game game){
         this.player = player;
         this.monster = monster;
         this.ui = ui;
         this.game = game;
-    }
-
-
-
-    public void start(){
-        while (!player.isDead() && !monster.isDead()){
-            setLabels();
-            game.battleAction1 = "lightAttack";
-            game.battleAction2 = "heavyAttack";
-        }
     }
 
     public boolean playerTurn(){
@@ -39,12 +28,12 @@ public class BattleLogic {
         if(playerTurn()){
             int attackCost = player.lightAttackCost + random.nextInt(6);
             if(player.getStamina() > attackCost){
-                int damageDealt = player.baseLightAttackDamage + random.nextInt(8);
+                int playerDamage = player.baseLightAttackDamage + random.nextInt(8);
                 ui.battleTextArea.setText("You were able to move quicker than the " + monster.getName() + "! Like a coiled spring you moved quickly and precisely, transforming " +
                         "into a whirling storm of steel and violence, slashing away at the " + monster.getName() + " and tearing its " +
                         "flesh!");
                 player.setStamina(player.getStamina() - attackCost);
-                monster.setHealth(monster.getHealth()- damageDealt);
+                monster.setHealth(monster.getHealth()- playerDamage);
 
             }else{
                 ui.battleTextArea.setText("You try and ready your sword to attack, but you don't have enough energy!");
@@ -60,11 +49,11 @@ public class BattleLogic {
         if(playerTurn()){
             int attackCost = player.heavyAttackCost + random.nextInt(6);
             if(player.getStamina() > attackCost){
-                int damageDealt = player.baseHeavyAttackDamage + random.nextInt(11);
+                int playerDamage = player.baseHeavyAttackDamage + random.nextInt(11);
                 ui.battleTextArea.setText("You moved faster than the " + monster.getName() + "! You grip you the hilt of your sword with both hands and rush towards the " + monster.getName() + "! Your sword digs" +
                         "deep into its flesh injuring it greatly!");
                 player.setStamina(player.getStamina() - attackCost);
-                monster.setHealth(monster.getHealth() - damageDealt);
+                monster.setHealth(monster.getHealth() - playerDamage);
             }else{
                 ui.battleTextArea.setText("You try and ready your sword to attack, but you don't have enough energy!");
             }
@@ -76,11 +65,12 @@ public class BattleLogic {
 
     public void monsterAttack(){
         int attackType = random.nextInt(3); // 0 = Light Attack, 1 = Heavy Attack, 2 = Beam Attack
+        int damageDealt = 0;
         switch(attackType){
             case 0 :
                 ui.battleTextArea.setText("The " + monster.getName() + " was faster than you! It lunged forward unleashing a fury of attacks with its claws and teeth! You gaurd against them" +
                     " but many slipped through, cutting open you flesh!");
-                int damageDealt = monster.baseLightAttackDamage + random.nextInt(8);
+                damageDealt = monster.baseLightAttackDamage + random.nextInt(8);
                 player.setHealth(player.getHealth() - damageDealt);
             case 1 :
                 damageDealt = monster.baseHeavyAttackDamage + random.nextInt(11);
@@ -91,7 +81,7 @@ public class BattleLogic {
                 int beamHit = random.nextInt(2); // 0 = Beam hit, 1 = Beam didn't hit
                 if(beamHit == 0){
                     ui.battleTextArea.setText("The " + monster.getName() + " charges up a ball of energy and fires it directly at you! You weren't able to get away fast enough and suffered a direct hit!");
-                    damageDealt = 25 + random.nextInt(11);
+                    damageDealt = 10 + random.nextInt(6);
                     player.setHealth(player.getHealth() - damageDealt);
                 }else{
                     ui.battleTextArea.setText("The " + monster.getName() + " charges up a ball of energy and fires it directly at you! Fortunately your instincts saved you from getting hit. You were able to dodge" +
