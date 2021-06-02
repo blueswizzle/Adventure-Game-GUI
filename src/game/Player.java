@@ -18,8 +18,8 @@ public class Player {
         this.mana = 100;
         baseLightAttackDamage = 10;
         baseHeavyAttackDamage = 20;
-        lightAttackCost = 10;
-        heavyAttackCost = 20;
+        lightAttackCost = 5;
+        heavyAttackCost = 10;
     }
 
     public int getHealth() {

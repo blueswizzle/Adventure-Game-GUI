@@ -12,7 +12,7 @@ public class UI {
     JButton actionButton1, actionButton2, actionButton3, fireBallButton, healButton;
     Font titleFont = new Font("Felix Titling", Font.PLAIN,90);
     Font normalFont = new Font("Bell MT", Font.PLAIN,28);
-
+    Font battleFont = new Font("Bell MT", Font.PLAIN,25);
 
 
     public void createUI(Game.ButtonHandler bHandler){
@@ -120,13 +120,13 @@ public class UI {
 
         playerStatsPanel.setBounds(0,550,300,250);
         playerHPLabel = new JLabel();
-        playerHPLabel.setFont(normalFont);
+        playerHPLabel.setFont(battleFont);
         playerHPLabel.setForeground(Color.green);
         playerStaminaLabel = new JLabel();
-        playerStaminaLabel.setFont(normalFont);
+        playerStaminaLabel.setFont(battleFont);
         playerStaminaLabel.setForeground(Color.green);
         playerManaLabel = new JLabel();
-        playerManaLabel.setFont(normalFont);
+        playerManaLabel.setFont(battleFont);
         playerManaLabel.setForeground(Color.green);
         playerStatsPanel.add(playerHPLabel);
         playerStatsPanel.add(playerStaminaLabel);
@@ -180,13 +180,13 @@ public class UI {
 
         enemyStatsPanel.setBounds(660,25,300,250);
         enemyHPLabel = new JLabel();
-        enemyHPLabel.setFont(normalFont);
+        enemyHPLabel.setFont(battleFont);
         enemyHPLabel.setForeground(Color.red);
         enemyStaminaLabel = new JLabel();
-        enemyStaminaLabel.setFont(normalFont);
+        enemyStaminaLabel.setFont(battleFont);
         enemyStaminaLabel.setForeground(Color.red);
         enemyManaLabel = new JLabel();
-        enemyManaLabel.setFont(normalFont);
+        enemyManaLabel.setFont(battleFont);
         enemyManaLabel.setForeground(Color.red);
         enemyStatsPanel.add(enemyHPLabel);
         enemyStatsPanel.add(enemyStaminaLabel);
