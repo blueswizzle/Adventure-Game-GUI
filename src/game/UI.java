@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class UI {
-    JFrame frame, battleFrame;
+    JFrame frame;
     JPanel titlePanel, startButtonPanel, mainTextPanel, choicePanel, playerStatsPanel, actionButtonPanel, enemyStatsPanel, battleTextPanel, spellPanel;
     JTextArea mainTextArea, battleTextArea;
     JLabel titleLabel, playerHPLabel, playerStaminaLabel, playerManaLabel, enemyHPLabel, enemyStaminaLabel, enemyManaLabel;
@@ -55,7 +55,7 @@ public class UI {
         mainTextPanel.add(mainTextArea);
 
         choicePanel = new JPanel();
-        choicePanel.setBounds(340,550,500,200);
+        choicePanel.setBounds(250,550,500,200);
         choicePanel.setLayout(new GridLayout(4,1));
         choice1 = new JButton("Choice 1");
         choice1.setFont(normalFont);
@@ -99,18 +99,13 @@ public class UI {
         frame.add(titlePanel);
         frame.add(startButtonPanel);
         frame.setResizable(false);
-        frame.setVisible(false);
+        frame.setVisible(true);
 
 
     }
 
     public void createBattleUI(){
-        battleFrame = new JFrame();
-        battleFrame.setSize(1000,800);
-        battleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        battleFrame.getContentPane().setBackground(Color.black);
-        battleFrame.setLayout(null);
-        battleFrame.setVisible(true);
+
 
         playerStatsPanel = new JPanel();
         actionButtonPanel = new JPanel();
@@ -206,11 +201,12 @@ public class UI {
         playerStatsPanel.setBackground(Color.black);
         actionButtonPanel.setBackground(Color.black);
 
-        battleFrame.add(playerStatsPanel);
-        battleFrame.add(actionButtonPanel);
-        battleFrame.add(enemyStatsPanel);
-        battleFrame.add(battleTextPanel);
-        battleFrame.add(spellPanel);
+        frame.add(playerStatsPanel);
+        frame.add(actionButtonPanel);
+        frame.add(enemyStatsPanel);
+        frame.add(battleTextPanel);
+        frame.add(spellPanel);
+
     }
 
 

@@ -22,7 +22,7 @@ public class Game {
     public Game() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         ui.createUI(bHandler);
         ui.createBattleUI();
-        //wm.showTitleScreen();
+        wm.showTitleScreen();
     }
     public class ButtonHandler implements ActionListener{
 
