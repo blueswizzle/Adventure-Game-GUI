@@ -17,8 +17,10 @@ public class Game {
     UI ui = new UI();
     WindowManager wm = new WindowManager(ui);
     String gamePosition1 ,gamePosition2, gamePosition3, gamePosition4;
-    String battleAction1, battleAction2, battleAction3, battleAction4;
+    String battleAction1, battleAction2, battleAction3, battleAction4, battleAction5, battleAction6, battleAction7, battleEnd;
     Story story = new Story(this,ui,wm);
+
+
     public Game() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         ui.createUI(bHandler);
         ui.createBattleUI(aHandler);
@@ -61,11 +63,26 @@ public class Game {
                 case "spell" :
                     wm.activateSpellMenu();
                     break;
+                case "potionMenu" :
+                    wm.activatePotionMenu();
+                    break;
                 case "castFireball" :
                     story.selectBattleAction(battleAction3);
                     break;
                 case "castHeal" :
                     story.selectBattleAction(battleAction4);
+                    break;
+                case "drinkHealthPotion" :
+                    story.selectBattleAction(battleAction5);
+                    break;
+                case "drinkStaminaPotion" :
+                    story.selectBattleAction(battleAction6);
+                    break;
+                case "drinkManaPotion" :
+                    story.selectBattleAction(battleAction7);
+                    break;
+                case "battleEnd" :
+                    story.selectBattleAction(battleEnd);
                     break;
             }
         }

@@ -39,12 +39,31 @@ public class WindowManager {
         ui.battleTextPanel.setVisible(true);
         ui.enemyStatsPanel.setVisible(true);
     }
+    public void showNormalUI(){
+        ui.playerStatsPanel.setVisible(false);
+        ui.actionButtonPanel.setVisible(false);
+        ui.battleTextPanel.setVisible(false);
+        ui.enemyStatsPanel.setVisible(false);
+
+        ui.mainTextPanel.setVisible(true);
+        ui.choicePanel.setVisible(true);
+        ui.titlePanel.setVisible(false);
+        ui.startButtonPanel.setVisible(false);
+    }
+
 
     public void activateSpellMenu(){
         if(!ui.spellPanel.isVisible()){
             ui.spellPanel.setVisible(true);
         }else{
             ui.spellPanel.setVisible(false);
+        }
+    }
+    public void activatePotionMenu(){
+        if(!ui.potionPanel.isVisible()){
+            ui.potionPanel.setVisible(true);
+        }else{
+            ui.potionPanel.setVisible(false);
         }
     }
 

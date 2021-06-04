@@ -73,22 +73,22 @@ public class Player {
     }
     public void drinkStaminaPotion(){
         if(getStaminaPotion() !=0){
-            if(this.getStamina() + 25 > 100){
+            if(this.getStamina() + 35 > 100){
                 this.setStamina(100);
                 staminaPotion--;
             }else{
-                this.setStamina(getStamina() + 25);
+                this.setStamina(getStamina() + 35);
                 staminaPotion--;
             }
         }
     }
     public void drinkManaPotion(){
         if(getManaPotion() !=0){
-            if(this.getMana() + 25 > 100){
+            if(this.getMana() + 35 > 100){
                 this.setMana(100);
                 manaPotion--;
             }else{
-                this.setMana(getMana() + 25);
+                this.setMana(getMana() + 35);
                 manaPotion--;
             }
         }

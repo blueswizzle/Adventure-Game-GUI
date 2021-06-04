@@ -10,10 +10,10 @@ public class UI {
 
     JTextArea mainTextArea, battleTextArea;
     JLabel titleLabel, playerHPLabel, playerStaminaLabel, playerManaLabel, enemyHPLabel,
-            enemyStaminaLabel, enemyManaLabel, playerHealthPotionLabel, playerStaminaPotionLabel, playerManaPotionLabel;
+            enemyStaminaLabel, enemyManaLabel;
 
-    JButton startButton, choice1, choice2, choice3, choice4;
-    JButton actionButton1, actionButton2, actionButton3, fireBallButton, healButton;
+    JButton startButton, choice1, choice2, choice3, choice4, continueButton;
+    JButton actionButton1, actionButton2, actionButton3, actionButton4, fireBallButton, healButton,healthPotionButton, staminaPotionButton, manaPotionButton;
     Font titleFont = new Font("Felix Titling", Font.PLAIN,90);
     Font normalFont = new Font("Bell MT", Font.PLAIN,28);
     Font battleFont = new Font("Bell MT", Font.PLAIN,25);
@@ -121,8 +121,9 @@ public class UI {
         battleTextPanel = new JPanel();
         spellPanel = new JPanel();
 
+        //////////////////////////////////////////////////////////////
 
-        playerStatsPanel.setBounds(0,550,300,250);
+        playerStatsPanel.setBounds(0,550,250,250);
         playerHPLabel = new JLabel();
         playerHPLabel.setFont(battleFont);
         playerHPLabel.setForeground(Color.green);
@@ -132,21 +133,11 @@ public class UI {
         playerManaLabel = new JLabel();
         playerManaLabel.setFont(battleFont);
         playerManaLabel.setForeground(Color.green);
-        playerHealthPotionLabel = new JLabel();
-        playerHealthPotionLabel.setFont(battleFont);
-        playerHealthPotionLabel.setForeground(Color.green);
-        playerStaminaPotionLabel = new JLabel();
-        playerStaminaPotionLabel.setFont(battleFont);
-        playerStaminaPotionLabel.setForeground(Color.green);
-        playerManaPotionLabel = new JLabel();
-        playerManaPotionLabel.setFont(battleFont);
-        playerManaPotionLabel.setForeground(Color.green);
-        playerStatsPanel.add(playerHealthPotionLabel);
-        playerStatsPanel.add(playerStaminaPotionLabel);
-        playerStatsPanel.add(playerManaPotionLabel);
         playerStatsPanel.add(playerHPLabel);
         playerStatsPanel.add(playerStaminaLabel);
         playerStatsPanel.add(playerManaLabel);
+
+        //////////////////////////////////////////////////////////////
 
         actionButtonPanel.setBounds(365,550,250,250);
         actionButton1 = new JButton("Light Attack");
@@ -173,6 +164,16 @@ public class UI {
         actionButton3.setActionCommand("spell");
         actionButton3.setFocusPainted(false);
         actionButtonPanel.add(actionButton3);
+        actionButton4 = new JButton("Potion");
+        actionButton4.setFont(normalFont);
+        actionButton4.setBackground(Color.black);
+        actionButton4.setForeground(Color.white);
+        actionButton4.addActionListener(aHandler);
+        actionButton4.setActionCommand("potionMenu");
+        actionButton4.setFocusPainted(false);
+        actionButtonPanel.add(actionButton4);
+
+        //////////////////////////////////////////////////////////////
 
         spellPanel.setBounds(500,575,460,200);
         spellPanel.setBackground(Color.black);
@@ -195,7 +196,42 @@ public class UI {
         spellPanel.setVisible(false);
 
         potionPanel = new JPanel();
+        potionPanel.setBackground(Color.black);
+        potionPanel.setBounds(550,600,460,200);
 
+        healthPotionButton = new JButton("HP");
+        healthPotionButton.setFont(normalFont);
+        healthPotionButton.setBackground(Color.black);
+        healthPotionButton.setForeground(Color.white);
+        healthPotionButton.addActionListener(aHandler);
+        healthPotionButton.setActionCommand("drinkHealthPotion");
+        healthPotionButton.setFocusPainted(false);
+        potionPanel.add(healthPotionButton);
+
+        //////////////////////////////////////////////////////////////
+
+        staminaPotionButton = new JButton("SP");
+        staminaPotionButton.setFont(normalFont);
+        staminaPotionButton.setBackground(Color.black);
+        staminaPotionButton.setForeground(Color.white);
+        staminaPotionButton.addActionListener(aHandler);
+        staminaPotionButton.setActionCommand("drinkStaminaPotion");
+        staminaPotionButton.setFocusPainted(false);
+        potionPanel.add(staminaPotionButton);
+
+        //////////////////////////////////////////////////////////////
+
+        manaPotionButton = new JButton("MP");
+        manaPotionButton.setFont(normalFont);
+        manaPotionButton.setBackground(Color.black);
+        manaPotionButton.setForeground(Color.white);
+        manaPotionButton.addActionListener(aHandler);
+        manaPotionButton.setActionCommand("drinkManaPotion");
+        manaPotionButton.setFocusPainted(false);
+        potionPanel.add(manaPotionButton);
+        potionPanel.setVisible(false);
+
+        //////////////////////////////////////////////////////////////
 
         enemyStatsPanel.setBounds(660,25,300,250);
         enemyHPLabel = new JLabel();
@@ -211,10 +247,18 @@ public class UI {
         enemyStatsPanel.add(enemyStaminaLabel);
         enemyStatsPanel.add(enemyManaLabel);
 
-
+        //////////////////////////////////////////////////////////////
 
         battleTextPanel.setBounds(10,25,600,500);
         battleTextPanel.setBackground(Color.black);
+        continueButton = new JButton("Continue");
+        continueButton.setFont(normalFont);
+        continueButton.setBackground(Color.black);
+        continueButton.setForeground(Color.white);
+        continueButton.addActionListener(aHandler);
+        continueButton.setActionCommand("battleEnd");
+        continueButton.setFocusPainted(false);
+        continueButton.setVisible(false);
         battleTextArea = new JTextArea("This is the main battle text! Let's get this on, son! We bout to killing monsters up in here!");
         battleTextArea.setBounds(10,25,600,500);
         battleTextArea.setBackground(Color.black);
@@ -224,19 +268,22 @@ public class UI {
         battleTextArea.setWrapStyleWord(true);
         battleTextArea.setEditable(false);
         battleTextPanel.add(battleTextArea);
+        battleTextPanel.add(continueButton);
 
-
+        //////////////////////////////////////////////////////////////
 
         enemyStatsPanel.setBackground(Color.black);
         playerStatsPanel.setBackground(Color.black);
         actionButtonPanel.setBackground(Color.black);
+
+        //////////////////////////////////////////////////////////////
 
         frame.add(playerStatsPanel);
         frame.add(actionButtonPanel);
         frame.add(enemyStatsPanel);
         frame.add(battleTextPanel);
         frame.add(spellPanel);
-
+        frame.add(potionPanel);
 
     }
 

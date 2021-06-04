@@ -46,15 +46,15 @@ public class BattleLogic {
     }
     public void playerCastHeal(){
         if(playerTurn()){
-            int spellCost = 30;
+            int spellCost = 45;
             if(player.getMana() > spellCost){
                 ui.battleTextArea.setText("You gather magical energy in the your hands. Once enough has gathered you cast a healing spell that surrounds you" +
-                        " in a golden aura that heals your wounds. \n\n**Plus 30 health!**");
-                if(player.getHealth() + 30 > 100){
+                        " in a golden aura that heals your wounds. \n\n**Plus 45 health!**");
+                if(player.getHealth() + 45 > 100){
                     player.setHealth(100);
                     player.setMana(player.getMana() - spellCost);
                 }else{
-                    player.setHealth(player.getHealth() + 30);
+                    player.setHealth(player.getHealth() + 45);
                     player.setMana(player.getMana() - spellCost);
                 }
             }else{
@@ -78,7 +78,7 @@ public class BattleLogic {
                 monster.setHealth(monster.getHealth()- playerDamage);
 
             }else{
-                ui.battleTextArea.setText("You try and ready your sword to attack, but you don't have enough energy!");
+                ui.battleTextArea.setText("You try to attack but you don't have enough energy!");
             }
 
         }else{
@@ -88,17 +88,17 @@ public class BattleLogic {
 
     }
 
-    public void playerHeavyAttack(){
+    public void playerHeavyAttack()  {
         if(playerTurn()){
             int attackCost = player.heavyAttackCost + random.nextInt(6);
             if(player.getStamina() > attackCost){
                 int playerDamage = player.baseHeavyAttackDamage + random.nextInt(11);
-                ui.battleTextArea.setText("You moved faster than the " + monster.getName() + "! You grip you the hilt of your sword with both hands and rush towards the " + monster.getName() + "! Your sword digs" +
+                ui.battleTextArea.setText("You are faster than the " + monster.getName() + "! You grip you the hilt of your sword with both hands and rush towards the " + monster.getName() + "! Your sword digs" +
                         " deep into its flesh injuring it greatly!");
                 player.setStamina(player.getStamina() - attackCost);
                 monster.setHealth(monster.getHealth() - playerDamage);
             }else{
-                ui.battleTextArea.setText("You try and ready your sword to attack, but you don't have enough energy!");
+                ui.battleTextArea.setText("You try to attack but you don't have enough energy!");
             }
         }else{
             monsterAttack();
@@ -125,7 +125,7 @@ public class BattleLogic {
             case 2 :
                 int beamHit = random.nextInt(2); // 0 = Beam hit, 1 = Beam didn't hit
                 if(beamHit == 0){
-                    ui.battleTextArea.setText("The " + monster.getName() + " charges up a ball of energy and fires it directly at you! You weren't able to get away and dodge fast enough suffering a direct hit!");
+                    ui.battleTextArea.setText("The " + monster.getName() + " charges up a ball of energy and fires it directly at you! You were unable to get away fast enough and suffered a direct hit!");
                     damageDealt = 25 + random.nextInt(6);
                     player.setHealth(player.getHealth() - damageDealt);
                 }else{
@@ -136,18 +136,46 @@ public class BattleLogic {
 
         }
     }
+    public void playerUseHealthPotion(){
+        if(player.getHealthPotion() !=0){
+            ui.battleTextArea.setText("You drank a health potion!\n\n**Plus 35 HP**");
+            player.drinkHealthPotion();
+            setLabels();
+        }else{
+            ui.battleTextArea.setText("You ran out of health potions! Use a healing spell to restore your health!");
+        }
 
-    public void showWinner(){
+    }
+    public void playerUseStaminaPotion(){
+        if(player.getStaminaPotion() !=0){
+            ui.battleTextArea.setText("You drank a stamina potion!\n\n**Plus 35 SP**");
+            player.drinkStaminaPotion();
+            setLabels();
+        }else{
+            ui.battleTextArea.setText("You ran out of stamina potions!");
+        }
+    }
+    public void playerUseManaPotion(){
+        if(player.getManaPotion() !=0){
+            ui.battleTextArea.setText("You drank a mana potion!\n\n**Plus 35 MP**");
+            player.drinkManaPotion();
+            setLabels();
+        }else{
+            ui.battleTextArea.setText("You ran out of mana potions!");
+        }
+    }
+
+    public void checkDead(){
         if(player.isDead()){
             player.setHealth(0);
-            ui.battleTextArea.setText("You have been killed!");
+            ui.battleTextArea.setText("You have been killed by the " + monster.getName() + "!");
             ui.playerHPLabel.setText("Your HP: " + player.getHealth());
+            ui.continueButton.setVisible(true);
         }else if (monster.isDead() && !player.isDead()){
             monster.setHealth(0);
-            ui.battleTextArea.setText("You have killed the enemy!");
+            ui.battleTextArea.setText("You have killed the " + monster.getName() + "! The body lies dead in front of you. What a great victory! ");
             ui.enemyHPLabel.setText(monster.getName() + "'s HP: " + monster.getHealth());
-        }else{
-            //print nothing
+            ui.continueButton.setVisible(true);
         }
     }
 
@@ -155,12 +183,12 @@ public class BattleLogic {
         ui.playerHPLabel.setText("Your HP: " + player.getHealth());
         ui.playerStaminaLabel.setText("Your Stamina: " + player.getStamina());
         ui.playerManaLabel.setText("Your Mana: " + player.getMana());
-        ui.playerHealthPotionLabel.setText("HP Potions: " + player.getHealthPotion());
-        ui.playerStaminaPotionLabel.setText("SP Potions: "+ player.getStaminaPotion());
-        ui.playerManaPotionLabel.setText("MP Potions: " + player.getManaPotion());
         ui.enemyHPLabel.setText(monster.getName() + "'s HP: " + monster.getHealth());
         ui.enemyStaminaLabel.setText(monster.getName() + "'s Stamina: " + monster.getStamina());
         ui.enemyManaLabel.setText(monster.getName() + "'s Mana: " + monster.getMana());
+        ui.healthPotionButton.setText("HP: " + player.getHealthPotion());
+        ui.staminaPotionButton.setText("SP: " + player.getStaminaPotion());
+        ui.manaPotionButton.setText("MP: " + player.getManaPotion());
     }
 
 

@@ -40,15 +40,40 @@ public class Story  {
             case "backToRiver00" : river00(); break;
             case "backToRiver01" : river01(); break;
             case "backToRiver02" : river02(); break;
+            case "toStartScreen" : wm.showTitleScreen(); break;
         }
     }
 
     public void selectBattleAction(String battleAction) {
         switch(battleAction){
-            case "lightAttack" : battle.playerLightAttack(); battle.showWinner(); break;
-            case "heavyAttack" : battle.playerHeavyAttack(); battle.showWinner(); break;
-            case "castFireball" : battle.playerCastFireball(); battle.showWinner(); break;
-            case "castHeal" : battle.playerCastHeal(); battle.showWinner(); break;
+            case "lightAttack" :
+                battle.playerLightAttack();
+                battle.checkDead();
+                break;
+            case "heavyAttack" :
+                battle.playerHeavyAttack();
+                battle.checkDead();
+                break;
+            case "castFireball" :
+                battle.playerCastFireball();
+                battle.checkDead();
+                break;
+            case "castHeal" :
+                battle.playerCastHeal();
+                battle.checkDead();
+                break;
+            case "drinkHealthPotion" :
+                battle.playerUseHealthPotion();
+                break;
+            case "drinkManaPotion" :
+                battle.playerUseManaPotion();
+                break;
+            case "drinkStaminaPotion" :
+                battle.playerUseStaminaPotion();
+                break;
+            case "battleEnd" :
+                afterWendigo();
+                break;
         }
     }
 
@@ -225,6 +250,29 @@ public class Story  {
             game.battleAction2 = "heavyAttack";
             game.battleAction3 = "castFireball";
             game.battleAction4 = "castHeal";
+            game.battleAction5 = "drinkHealthPotion";
+            game.battleAction6 = "drinkStaminaPotion";
+            game.battleAction7 = "drinkManaPotion";
+            game.battleEnd = "battleEnd";
+
+        }
+        public void afterWendigo(){
+            wm.showNormalUI();
+            if(player.isDead()){
+                ui.mainTextArea.setText("The enemy proved too strong for you and thus you have been slain!\n\n Start over?");
+            }else{
+                ui.mainTextArea.setText("You have slain your enemy! Rejoice in you victory for this is one of many!\n\n Start Over?");
+            }
+
+                ui.choice1.setText("Back to Start");
+                ui.choice2.setText("");
+                ui.choice3.setText("");
+                ui.choice4.setText("");
+
+                game.gamePosition1 = "toStartScreen";
+                game.gamePosition2 = "";
+                game.gamePosition3 = "";
+                game.gamePosition4 = "";
 
         }
 
