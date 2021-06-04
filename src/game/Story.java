@@ -228,7 +228,7 @@ public class Story  {
             ui.mainTextArea.setText("!!!!");
             am.playWendigoRoar();
             ui.mainTextArea.setText("A terrible roar echoes through the woods. The hair on the back of your neck stands up. The wendigo completely emerges from the bushes, standing 7ft tall with leathery pale " +
-                    "skin. It's head had antlers that were bloody, and its mouth had razor sharp teeth. In a few moments it will leap forward and attack!" +
+                    "skin. It's head has antlers that were bloody, its eyes were glowing red and were sunken in, and its mouth filled razor sharp teeth. In a few moments it's going to leap forward and attack!" +
                     "\n\nWhat do you do?");
             ui.choice1.setText("Fight");
             ui.choice2.setText("Run Away!");
