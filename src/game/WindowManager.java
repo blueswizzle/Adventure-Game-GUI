@@ -39,14 +39,13 @@ public class WindowManager {
         ui.battleTextPanel.setVisible(true);
         ui.enemyStatsPanel.setVisible(true);
     }
-    public void showBattleUImini(){
-        ui.titlePanel.setVisible(false);
-        ui.startButtonPanel.setVisible(false);
-        ui.mainTextPanel.setVisible(false);
-        ui.battleTextPanel.setVisible(true);
-        ui.playerStatsPanel.setVisible(true);
-        ui.enemyStatsPanel.setVisible(true);
-        ui.actionButtonPanel.setVisible(false);
+
+    public void activateSpellMenu(){
+        if(!ui.spellPanel.isVisible()){
+            ui.spellPanel.setVisible(true);
+        }else{
+            ui.spellPanel.setVisible(false);
+        }
     }
 
 

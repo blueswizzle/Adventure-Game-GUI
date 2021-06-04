@@ -11,7 +11,7 @@ public class Story  {
     WindowManager wm;
     AudioManager am = new AudioManager();
     Player player = new Player();
-    Monster wendigo;
+    Monster monster;
     BattleLogic battle;
 
     public Story(Game game,UI ui,WindowManager wm) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
@@ -43,10 +43,12 @@ public class Story  {
         }
     }
 
-    public void selectBattleAction(String battleAction){
+    public void selectBattleAction(String battleAction) {
         switch(battleAction){
-            case "lightAttack" : battle.playerLightAttack(); break;
-            case "heavyAttack" : battle.playerHeavyAttack(); break;
+            case "lightAttack" : battle.playerLightAttack(); battle.showWinner(); break;
+            case "heavyAttack" : battle.playerHeavyAttack(); battle.showWinner(); break;
+            case "castFireball" : battle.playerCastFireball(); battle.showWinner(); break;
+            case "castHeal" : battle.playerCastHeal(); battle.showWinner(); break;
         }
     }
 
@@ -201,7 +203,7 @@ public class Story  {
             ui.mainTextArea.setText("!!!!");
             am.playWendigoRoar();
             ui.mainTextArea.setText("A terrible roar echoes through the woods. The hair on the back of your neck stands up. The wendigo completely emerges from the bushes, standing 7ft tall with leathery pale " +
-                    "skin. It's head had antlers that were bloody, and its mouth had razor sharp teeth. In a few moments it will leap forward and attack." +
+                    "skin. It's head had antlers that were bloody, and its mouth had razor sharp teeth. In a few moments it will leap forward and attack!" +
                     "\n\nWhat do you do?");
             ui.choice1.setText("Fight");
             ui.choice2.setText("Run Away!");
@@ -214,25 +216,17 @@ public class Story  {
             game.gamePosition4 = "";
         }
         public void fightWendigo(){
-            wendigo = new Monster("Wendigo");
-            battle = new BattleLogic(player,wendigo,ui,game);
+            monster = new Monster("Wendigo");
+            battle = new BattleLogic(player,monster,ui,game);
             wm.showBattleUI();
+            battle.startBattle();
             battle.setLabels();
             game.battleAction1 = "lightAttack";
             game.battleAction2 = "heavyAttack";
-
-
-
+            game.battleAction3 = "castFireball";
+            game.battleAction4 = "castHeal";
 
         }
-    public void setLabels(){
-        ui.playerHPLabel.setText("Your HP: " + player.getHealth());
-        ui.playerStaminaLabel.setText("Your Stamina: " + player.getStamina());
-        ui.playerManaLabel.setText("Your Mana: " + player.getMana());
-        ui.enemyHPLabel.setText(wendigo.getName() + "'s HP: " + wendigo.getHealth());
-        ui.enemyStaminaLabel.setText(wendigo.getName() + "'s Stamina: " + wendigo.getStamina());
-        ui.enemyManaLabel.setText(wendigo.getName() + "'s Mana: " + wendigo.getMana());
-    }
 
     }
 

@@ -5,9 +5,13 @@ import java.awt.*;
 
 public class UI {
     JFrame frame, battleFrame;
-    JPanel titlePanel, startButtonPanel, mainTextPanel, choicePanel, playerStatsPanel, actionButtonPanel, enemyStatsPanel, battleTextPanel, spellPanel;
+    JPanel titlePanel, startButtonPanel, mainTextPanel, choicePanel, playerStatsPanel, actionButtonPanel, enemyStatsPanel, battleTextPanel, spellPanel,
+            potionPanel;
+
     JTextArea mainTextArea, battleTextArea;
-    JLabel titleLabel, playerHPLabel, playerStaminaLabel, playerManaLabel, enemyHPLabel, enemyStaminaLabel, enemyManaLabel;
+    JLabel titleLabel, playerHPLabel, playerStaminaLabel, playerManaLabel, enemyHPLabel,
+            enemyStaminaLabel, enemyManaLabel, playerHealthPotionLabel, playerStaminaPotionLabel, playerManaPotionLabel;
+
     JButton startButton, choice1, choice2, choice3, choice4;
     JButton actionButton1, actionButton2, actionButton3, fireBallButton, healButton;
     Font titleFont = new Font("Felix Titling", Font.PLAIN,90);
@@ -128,6 +132,18 @@ public class UI {
         playerManaLabel = new JLabel();
         playerManaLabel.setFont(battleFont);
         playerManaLabel.setForeground(Color.green);
+        playerHealthPotionLabel = new JLabel();
+        playerHealthPotionLabel.setFont(battleFont);
+        playerHealthPotionLabel.setForeground(Color.green);
+        playerStaminaPotionLabel = new JLabel();
+        playerStaminaPotionLabel.setFont(battleFont);
+        playerStaminaPotionLabel.setForeground(Color.green);
+        playerManaPotionLabel = new JLabel();
+        playerManaPotionLabel.setFont(battleFont);
+        playerManaPotionLabel.setForeground(Color.green);
+        playerStatsPanel.add(playerHealthPotionLabel);
+        playerStatsPanel.add(playerStaminaPotionLabel);
+        playerStatsPanel.add(playerManaPotionLabel);
         playerStatsPanel.add(playerHPLabel);
         playerStatsPanel.add(playerStaminaLabel);
         playerStatsPanel.add(playerManaLabel);
@@ -177,6 +193,9 @@ public class UI {
         spellPanel.add(fireBallButton);
         spellPanel.add(healButton);
         spellPanel.setVisible(false);
+
+        potionPanel = new JPanel();
+
 
         enemyStatsPanel.setBounds(660,25,300,250);
         enemyHPLabel = new JLabel();

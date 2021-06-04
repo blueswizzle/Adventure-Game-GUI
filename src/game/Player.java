@@ -10,7 +10,9 @@ public class Player {
     public int baseHeavyAttackDamage;
     public int lightAttackCost;
     public int heavyAttackCost;
-
+    private int healthPotion = 2;
+    private int staminaPotion = 2;
+    private int manaPotion = 2;
 
     public Player() {
         this.health = 100;
@@ -48,6 +50,48 @@ public class Player {
     public boolean isDead(){
         if(this.health <= 0) return true;
         return false;
+    }
+    public int getHealthPotion(){
+        return this.healthPotion;
+    }
+    public int getStaminaPotion(){
+        return this.staminaPotion;
+    }
+    public int getManaPotion(){
+        return this.manaPotion;
+    }
+    public void drinkHealthPotion(){
+        if(getHealthPotion() !=0){
+            if(this.getHealth() + 25 > 100){
+                this.setHealth(100);
+                healthPotion--;
+            }else{
+                this.setHealth(getHealth() + 25);
+                healthPotion--;
+            }
+        }
+    }
+    public void drinkStaminaPotion(){
+        if(getStaminaPotion() !=0){
+            if(this.getStamina() + 25 > 100){
+                this.setStamina(100);
+                staminaPotion--;
+            }else{
+                this.setStamina(getStamina() + 25);
+                staminaPotion--;
+            }
+        }
+    }
+    public void drinkManaPotion(){
+        if(getManaPotion() !=0){
+            if(this.getMana() + 25 > 100){
+                this.setMana(100);
+                manaPotion--;
+            }else{
+                this.setMana(getMana() + 25);
+                manaPotion--;
+            }
+        }
     }
 
 
