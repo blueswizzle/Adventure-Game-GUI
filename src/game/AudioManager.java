@@ -7,6 +7,8 @@ import java.io.IOException;
 public class AudioManager {
     File wendigoRoar;
     Clip wendigoRoarClip;
+    File fireballCharge;
+    Clip fireBallChargeClip;
     public AudioManager() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         addAllAudio();
     }
@@ -16,6 +18,8 @@ public class AudioManager {
         AudioInputStream hollowRoarStream = AudioSystem.getAudioInputStream(wendigoRoar);
         wendigoRoarClip = AudioSystem.getClip();
         wendigoRoarClip.open(hollowRoarStream);
+
+        fireballCharge = new File("src/game.sound/firebolt charge.wav");
     }
 
     public void playWendigoRoar(){
