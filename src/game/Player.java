@@ -93,6 +93,11 @@ public class Player {
             }
         }
     }
+    public void setValues(int value){
+        this.setHealth(value);
+        this.setMana(value);
+        this.setStamina(value);
+    }
 
 
 

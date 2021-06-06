@@ -34,16 +34,32 @@ public class Game {
             switch (userInput){
                 case "start" : wm.titleToStart(); story.introScene00(); break;
                 case "choice1" :
-                    story.selectGamePosition(gamePosition1);
+                    try {
+                        story.selectGamePosition(gamePosition1);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
                 case "choice2" :
-                    story.selectGamePosition(gamePosition2);
+                    try {
+                        story.selectGamePosition(gamePosition2);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
                 case "choice3" :
-                    story.selectGamePosition(gamePosition3);
+                    try {
+                        story.selectGamePosition(gamePosition3);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
                 case "choice4" :
-                    story.selectGamePosition(gamePosition4);
+                    try {
+                        story.selectGamePosition(gamePosition4);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
             }
         }

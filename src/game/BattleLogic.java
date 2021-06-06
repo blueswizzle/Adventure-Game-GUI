@@ -38,8 +38,10 @@ public class BattleLogic {
                 monster.setHealth(monster.getHealth() - damageDealt);
                 player.setMana(player.getMana() - spellCost);
                 am.playFireball();
+                ui.spellPanel.setVisible(false);
             }else{
                 ui.battleTextArea.setText("You try to gather your remaining magical energy it your hands to cast a spell but you just don't have enough!");
+                ui.spellPanel.setVisible(false);
             }
         }else{
             monsterAttack();
@@ -59,8 +61,10 @@ public class BattleLogic {
                     player.setHealth(player.getHealth() + 45);
                     player.setMana(player.getMana() - spellCost);
                 }
+                ui.spellPanel.setVisible(false);
             }else{
                 ui.battleTextArea.setText("You try to heal yourself with a spell but you don't have enough magical energy!");
+                ui.spellPanel.setVisible(false);
             }
         }else{
             monsterAttack();
@@ -90,7 +94,7 @@ public class BattleLogic {
 
     }
 
-    public void playerHeavyAttack()  {
+    public void playerHeavyAttack() throws InterruptedException {
         if(playerTurn()){
             int attackCost = player.heavyAttackCost + random.nextInt(6);
             if(player.getStamina() > attackCost){
@@ -99,6 +103,7 @@ public class BattleLogic {
                         " deep into its flesh injuring it greatly!");
                 player.setStamina(player.getStamina() - attackCost);
                 monster.setHealth(monster.getHealth() - playerDamage);
+                am.playHeavyAttack();
             }else{
                 ui.battleTextArea.setText("You try to attack but you don't have enough energy!");
             }

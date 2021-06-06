@@ -13,13 +13,12 @@ public class Story  {
     Player player = new Player();
     Monster monster;
     BattleLogic battle;
-
     public Story(Game game,UI ui,WindowManager wm) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         this.game = game;
         this.ui = ui;
         this.wm = wm;
     }
-    public void selectGamePosition(String gamePosition) {
+    public void selectGamePosition(String gamePosition) throws InterruptedException {
         switch(gamePosition){
             case "toIntro01" : introScene01(); break;
             case "toIntro02" : introScene02(); break;
@@ -78,6 +77,7 @@ public class Story  {
     }
 
     public void introScene00(){
+        am.playforestSound();
         ui.mainTextArea.setText("You open your eyes and gaze upon the starry blue sky. It's a little past sunrise. " +
                 "As you stand up you can feel the cool breeze graze your face. You quickly eat breakfast and gather your belongings so you can begin making your way to the nearest town, Caldor. " +
                 "You've been wandering through the forest of Elwynn for a few weeks now, resulting in you missing human interaction.");
@@ -92,6 +92,7 @@ public class Story  {
         game.gamePosition4 = "";
     }
    public void introScene01(){
+       am.playforestSound();
         ui.mainTextArea.setText("You make your way through the well-lit forest while keeping an eye out for any monsters. You haven't encountered any so far, but it's better to be cautious. Your armour" +
                 " shakes and rattles, but the noise isn't so loud that it's going to attract every living thing near you. Caldor should be 15-20 minutes away at the current pace you're going.");
 
@@ -106,7 +107,8 @@ public class Story  {
         game.gamePosition4 = "";
 
     }
-    public void introScene02(){
+    public void introScene02() throws InterruptedException {
+        am.forestSoundClip.stop();
         ui.mainTextArea.setText("You've made it to Caldor, an impoverished town on the outskirts of Grimheart. The town walls are in disarray, and you can see that the borders are poorly defended. Most likely" +
                 " monsters are a very real and common threat that the locals have to be wary off in their day to day lives. As you approach the front gate, two guards come forward to stop you. From their expressions" +
                 " one can easily see that they hate being stationed all the way out in the boonies. No doubt that at the slightest threat of a monster or bandit raid, these guards will turn tail and run. So much for " +
@@ -120,7 +122,6 @@ public class Story  {
         game.gamePosition2 = "backToIntro01";
         game.gamePosition3 = "";
         game.gamePosition4 = "";
-
     }
     public void introScene03(){
         ui.mainTextArea.setText("'Who are you and what are you doing all the way out here?', one of them asks. The guards take note of your rugged appearance and become more wary of you." +
@@ -180,8 +181,9 @@ public class Story  {
         game.gamePosition4 = "";
     }
     public void river00(){
+        am.playRiver();
         ui.mainTextArea.setText("You spend the next few hours at the river fishing and gathering materials for a make-shift camp. After setting up camp, you check your armor and weapons. Everything is in order" +
-                " so you quickly check the perimeters of your camp. Everything looks to be safe so you decide to take sleep until nightfall. Then you plan on sneaking your way into Caldor.");
+                " so you quickly check the perimeters of your camp. Everything looks to be safe so you decide to sleep until nightfall. Then you plan on sneaking your way into Caldor.");
 
         ui.choice1.setText(" > ");
         ui.choice2.setText(" < ");
@@ -194,6 +196,8 @@ public class Story  {
         game.gamePosition4 = "";
     }
         public void river01(){
+            am.riverClip.stop();
+            am.playRustling();
             ui.mainTextArea.setText("You're awoken at the sounds of twigs snapping and lots of movement in the brushes. It's dark so you can't see whatever is making all those sounds. You pass it off as just some foxes or some other small animals that are strutting" +
                 " about but the sound of rustling becomes louder and more frequent. Your instincts tell you this isn't just some ordinary fox or rabbit having a late-night stroll in the woods. You get up and ready your sword, your eyes " +
                     "darting around trying to pick out whatever is out there.");
@@ -209,6 +213,7 @@ public class Story  {
             game.gamePosition4 = "";
         }
         public void river02(){
+
             ui.mainTextArea.setText("The rustling gets closer until it sounds like whatever is out there is only another 12 feet in front of you. Eventually the rustling stops. You finally catch a glimpse of the creature's eyes. They " +
                     "shine bright red through the bushes, and they're at least 7ft high up from the ground. The creature's head slowly emerges from the bushes.");
 
@@ -224,11 +229,11 @@ public class Story  {
         }
 
 
-        public void wendigoAttack00()  {
-            ui.mainTextArea.setText("!!!!");
+        public void wendigoAttack00() {
+            am.rustlingClip.stop();
             am.playWendigoRoar();
             ui.mainTextArea.setText("A terrible roar echoes through the woods. The hair on the back of your neck stands up. The wendigo completely emerges from the bushes, standing 7ft tall with leathery pale " +
-                    "skin. It's head has antlers that were bloody, its eyes were glowing red and were sunken in, and its mouth filled razor sharp teeth. In a few moments it's going to leap forward and attack!" +
+                    "skin. Its head has antlers that are bloody, its eyes were glowing red and were sunken in, and its mouth filled with razor sharp teeth. In a few moments it's going to leap forward and attack!" +
                     "\n\nWhat do you do?");
             ui.choice1.setText("Fight");
             ui.choice2.setText("Run Away!");
@@ -242,10 +247,13 @@ public class Story  {
         }
         public void fightWendigo(){
             monster = new Monster("Wendigo");
+            player.setValues(100);
             battle = new BattleLogic(player,monster,ui,am,game);
             wm.showBattleUI();
             battle.startBattle();
             battle.setLabels();
+            ui.continueButton.setVisible(false);
+            am.playBattleMusic();
             game.battleAction1 = "lightAttack";
             game.battleAction2 = "heavyAttack";
             game.battleAction3 = "castFireball";
@@ -257,6 +265,7 @@ public class Story  {
 
         }
         public void afterWendigo(){
+            am.battleMusicClip.stop();
             wm.showNormalUI();
             if(player.isDead()){
                 ui.mainTextArea.setText("The enemy proved too strong for you and thus you have been slain!\n\n Start over?");
