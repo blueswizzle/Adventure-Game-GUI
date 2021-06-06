@@ -8,12 +8,13 @@ public class BattleLogic {
     UI ui;
     Game game;
     Random random = new Random();
-
-    public BattleLogic(Player player, Monster monster, UI ui, Game game){
+    AudioManager am;
+    public BattleLogic(Player player, Monster monster, UI ui, AudioManager am, Game game){
         this.player = player;
         this.monster = monster;
         this.ui = ui;
         this.game = game;
+        this.am = am;
     }
 
     public boolean playerTurn(){
@@ -27,7 +28,7 @@ public class BattleLogic {
     public void startBattle(){
         ui.battleTextArea.setText("You choose to stand and fight the " + monster.getName() + "! You unsheathe your sword and set your focus on the enemy!");
     }
-    public void playerCastFireball(){
+    public void playerCastFireball() throws InterruptedException {
         if(playerTurn()){
             int spellCost = 15;
             if(player.getMana() > spellCost){
@@ -36,6 +37,7 @@ public class BattleLogic {
                 int damageDealt = 20 + random.nextInt(6);
                 monster.setHealth(monster.getHealth() - damageDealt);
                 player.setMana(player.getMana() - spellCost);
+                am.playFireball();
             }else{
                 ui.battleTextArea.setText("You try to gather your remaining magical energy it your hands to cast a spell but you just don't have enough!");
             }
@@ -66,7 +68,7 @@ public class BattleLogic {
         setLabels();
     }
 
-    public void playerLightAttack() {
+    public void playerLightAttack() throws InterruptedException {
         if(playerTurn()){
             int attackCost = player.lightAttackCost + random.nextInt(6);
             if(player.getStamina() > attackCost){
@@ -76,7 +78,7 @@ public class BattleLogic {
                         "flesh!");
                 player.setStamina(player.getStamina() - attackCost);
                 monster.setHealth(monster.getHealth()- playerDamage);
-
+                am.playLightAttack();
             }else{
                 ui.battleTextArea.setText("You try to attack but you don't have enough energy!");
             }

@@ -44,7 +44,7 @@ public class Story  {
         }
     }
 
-    public void selectBattleAction(String battleAction) {
+    public void selectBattleAction(String battleAction) throws InterruptedException {
         switch(battleAction){
             case "lightAttack" :
                 battle.playerLightAttack();
@@ -242,7 +242,7 @@ public class Story  {
         }
         public void fightWendigo(){
             monster = new Monster("Wendigo");
-            battle = new BattleLogic(player,monster,ui,game);
+            battle = new BattleLogic(player,monster,ui,am,game);
             wm.showBattleUI();
             battle.startBattle();
             battle.setLabels();

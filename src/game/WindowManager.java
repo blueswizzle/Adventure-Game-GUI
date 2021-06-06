@@ -44,6 +44,9 @@ public class WindowManager {
         ui.actionButtonPanel.setVisible(false);
         ui.battleTextPanel.setVisible(false);
         ui.enemyStatsPanel.setVisible(false);
+        ui.spellPanel.setVisible(false);
+        ui.potionPanel.setVisible(false);
+
 
         ui.mainTextPanel.setVisible(true);
         ui.choicePanel.setVisible(true);

@@ -55,10 +55,18 @@ public class Game {
             String userInput = e.getActionCommand();
             switch (userInput){
                 case "lightAttack" :
-                    story.selectBattleAction(battleAction1);
+                    try {
+                        story.selectBattleAction(battleAction1);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
                 case "heavyAttack" :
-                    story.selectBattleAction(battleAction2);
+                    try {
+                        story.selectBattleAction(battleAction2);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
                 case "spell" :
                     wm.activateSpellMenu();
@@ -67,22 +75,46 @@ public class Game {
                     wm.activatePotionMenu();
                     break;
                 case "castFireball" :
-                    story.selectBattleAction(battleAction3);
+                    try {
+                        story.selectBattleAction(battleAction3);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
                 case "castHeal" :
-                    story.selectBattleAction(battleAction4);
+                    try {
+                        story.selectBattleAction(battleAction4);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
                 case "drinkHealthPotion" :
-                    story.selectBattleAction(battleAction5);
+                    try {
+                        story.selectBattleAction(battleAction5);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
                 case "drinkStaminaPotion" :
-                    story.selectBattleAction(battleAction6);
+                    try {
+                        story.selectBattleAction(battleAction6);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
                 case "drinkManaPotion" :
-                    story.selectBattleAction(battleAction7);
+                    try {
+                        story.selectBattleAction(battleAction7);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
                 case "battleEnd" :
-                    story.selectBattleAction(battleEnd);
+                    try {
+                        story.selectBattleAction(battleEnd);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                     break;
             }
         }
